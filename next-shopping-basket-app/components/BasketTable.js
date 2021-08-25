@@ -31,21 +31,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function generate() {
-  return [0, 1, 2, 3, 4].map((value, index) => {
+function generate(products) {
+  return products?.map((product, index) => {
     return (
-      <ListItem key={"some key value" + index}>
+      <ListItem key={product.id}>
         <ListItemAvatar>
           <Avatar>
             <FolderIcon />
           </Avatar>
         </ListItemAvatar>
         <ListItemText
-          primary="Single-line item"
+          primary={product.name}
           // secondary={secondary ? "Secondary text" : null}
         />
         <ListItemText
-          primary="Price: $ 229.99"
+          primary={`$ ${product.price}`}
           // secondary={secondary ? "Secondary text" : null}
         />
         <ListItemSecondaryAction>
@@ -58,9 +58,10 @@ function generate() {
   });
 }
 
-export function BasketTable() {
+export function BasketTable(props) {
   const classes = useStyles();
   const [dense, setDense] = React.useState(false);
+  console.log(props);
   // const [secondary, setSecondary] = React.useState(false);
 
   return (
@@ -71,7 +72,7 @@ export function BasketTable() {
             Shopping basket
           </Typography>
           <div className={classes.demo}>
-            <List dense={dense}>{generate()}</List>
+            <List dense={dense}>{generate(props.products)}</List>
           </div>
         </Grid>
       </div>

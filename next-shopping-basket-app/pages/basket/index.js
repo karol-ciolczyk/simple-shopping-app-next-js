@@ -1,18 +1,26 @@
+import { useEffect, useState } from "react";
 import { BasketTable } from "../../components/BasketTable";
 import { MainNavbar } from "../../components/MainNavbar";
 
 const Basket = function () {
-  if (typeof window !== "undefined") {
-    // localStorage code here
-    console.log(window["localStorage"].products);
-    // const jsonObject = JSON.stringify(products.basket);
-    // window["localStorage"].setItem("products", jsonObject);
-  }
+  const [prducts, setPrducts] = useState([]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // localStorage code here
+      // console.log(window["localStorage"].products);
+      const jsonObj = window["localStorage"].products;
+      const basketState = JSON.parse(jsonObj);
+      console.log(basketState);
+      setPrducts(basketState);
+      // window["localStorage"].setItem("products", jsonObject);
+    }
+  }, []);
 
   return (
     <>
-      <MainNavbar />
-      <BasketTable />;
+      <MainNavbar itemsNumber={prducts.length} />
+      <BasketTable products={prducts} />;
     </>
   );
 };
