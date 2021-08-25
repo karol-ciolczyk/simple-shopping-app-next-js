@@ -1,6 +1,6 @@
 import { MainPage } from "../components/MainPage";
 
-const HomePage = function () {
+const HomePage = function (props) {
   return <MainPage />;
 };
 

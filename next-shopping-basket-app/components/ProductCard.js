@@ -6,6 +6,7 @@ import {
   Typography,
   Button,
 } from "@material-ui/core";
+import Link from "next/link";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -30,20 +31,26 @@ const useStyles = makeStyles((theme) => ({
 export const ProductCard = function (props) {
   const classes = useStyles();
 
+  const onClickHandler = function (event) {
+    console.log(event);
+  };
+
   return (
     <Card className={classes.root} elevation={3}>
-      <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image={props.image}
-          title="Contemplative Reptile"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="subtitle1" component="h2">
-            {props.name}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
+      <Link href={`/products/${props.id}`} passHref>
+        <CardActionArea>
+          <CardMedia
+            className={classes.media}
+            image={props.image}
+            title="Contemplative Reptile"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="subtitle1" component="h2">
+              {props.name}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Link>
       <div className={classes.actionCard}>
         <Typography variant="subtitle2">Price: {props.price}</Typography>
         <Button size="small" variant="contained" color="primary">

@@ -1,7 +1,34 @@
 import { ProductsContainer } from "../../components/ProductsContainer";
+import { gql } from "@apollo/client";
+import client from "../../apollo-client";
 
-const Products = function () {
-  return <ProductsContainer />;
+const GET_PRODUCTS = gql`
+  query Products {
+    products {
+      id
+      name
+      slug
+      image
+      price
+      description
+    }
+  }
+`;
+
+const Products = function (props) {
+  return <ProductsContainer products={props.products} />;
 };
+
+export async function getStaticProps() {
+  const { data } = await client.query({
+    query: GET_PRODUCTS,
+  });
+
+  return {
+    props: {
+      products: data.products,
+    },
+  };
+}
 
 export default Products;

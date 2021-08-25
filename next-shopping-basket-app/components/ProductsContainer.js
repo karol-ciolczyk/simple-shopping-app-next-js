@@ -58,6 +58,8 @@ const useStyles = makeStyles((theme) => ({
 export function ProductsContainer(props) {
   const classes = useStyles();
 
+  // console.log(props.products);
+
   return (
     <Grid
       container
@@ -66,9 +68,10 @@ export function ProductsContainer(props) {
       className={classes.container}
     >
       <Grid xs={12} item></Grid>
-      {PRODUCTS_DATA.map((product) => (
+      {props.products.map((product) => (
         <Grid key={product.id} item>
           <ProductCard
+            id={product.id}
             image={product.image}
             price={product.price}
             name={product.name}
