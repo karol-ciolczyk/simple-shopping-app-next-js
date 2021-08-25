@@ -37,18 +37,34 @@ export function ProductsContainer(props) {
     basket: [],
   });
 
-  if (typeof window !== "undefined") {
-    console.log("EFFECT", window.localStorage.products);
+  useEffect(() => {
+    if (products.basket.length < 1) return;
+    if (typeof window !== "undefined") {
+      console.log("EFFECT", window.localStorage.products);
 
-    // localStorage code here
-    // console.log(window["localStorage"].products);
-    const jsonObject = JSON.stringify(products.basket);
-    window["localStorage"].setItem("products", jsonObject);
-  }
+      // localStorage code here
+      // console.log(window["localStorage"].products);
+      const jsonObject = JSON.stringify(products.basket);
+      window["localStorage"].setItem("products", jsonObject);
+    }
+  }, [products.basket]);
 
-  // useEffect(() => {
-  //   console.log("EFFECT", window.localStorage);
-  // }, []);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // localStorage code here
+      // console.log(window["localStorage"].products);
+      const jsonObj = window["localStorage"].products;
+      const products = JSON.parse(jsonObj);
+      console.log(products);
+      setProducts((prev) => {
+        return {
+          ...prev,
+          basket: [...prev.basket, ...products],
+        };
+      });
+      // window["localStorage"].setItem("products", jsonObject);
+    }
+  }, []);
 
   const addToBasketHandler = function (productId) {
     const selectedProduct = products.data.filter(

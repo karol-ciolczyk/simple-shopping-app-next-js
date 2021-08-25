@@ -1,0 +1,14 @@
+.item {
+  display: flex;
+  justify-content: space-between;
+  /* align-content: stretch; */
+}
+.contentItem {
+  display: flex;
+  flex-basis: 100%;
+}
+.content {
+  flex-basis: 100%;
+  margin: 0px 20px;
+  color: red;
+}
