@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { alpha, makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -22,6 +23,10 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     display: "none",
+    cursor: "pointer",
+    "&:hover": {
+      color: alpha(theme.palette.common.white, 0.25),
+    },
     [theme.breakpoints.up("sm")]: {
       display: "block",
     },
@@ -149,9 +154,11 @@ export function MainNavbar(props) {
             >
               <MenuIcon />
             </IconButton>
-            <Typography className={classes.title} variant="h6" noWrap>
-              Material-UI
-            </Typography>
+            <Link href="/" passHref>
+              <Typography className={classes.title} variant="h6" noWrap>
+                Home Page
+              </Typography>
+            </Link>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
