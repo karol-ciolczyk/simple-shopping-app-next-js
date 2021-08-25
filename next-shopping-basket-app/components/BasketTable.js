@@ -33,15 +33,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function generate(products) {
+function generate(products, onDeleteItemHandler) {
   return products?.map((product, index) => {
     return (
-      <div key="some key value">
+      <div key={product.id}>
         <Card elevation={5} className={style.item}>
           <div className={style.contentItem}>
             <img src={product.image} width="100" height="100" alt="image" />
             <div className={style.content}>
-              <Typography variant="h5">{product.name}</Typography>
+              <Typography variant="subtitle1">{product.name}</Typography>
             </div>
           </div>
           <div className={style.contentItem}>
@@ -50,13 +50,14 @@ function generate(products) {
                 $ {product.price}
               </Typography>
             </div>
-            <IconButton
-              className={style.content}
-              edge="end"
-              aria-label="delete"
+            <button
+              data-id={product.id}
+              className={style.content_button}
+              onClick={onDeleteItemHandler}
             >
-              <DeleteIcon />
-            </IconButton>
+              {" "}
+              Delete{" "}
+            </button>
           </div>
         </Card>
       </div>
@@ -70,6 +71,10 @@ export function BasketTable(props) {
   console.log(props);
   // const [secondary, setSecondary] = React.useState(false);
 
+  const onDeleteItemHandler = function (event) {
+    console.log(event.target.dataset.id);
+  };
+
   return (
     <Card elevation={3} className={classes.container}>
       <div className={classes.root}>
@@ -78,7 +83,9 @@ export function BasketTable(props) {
             Shopping basket
           </Typography>
           <div className={classes.demo}>
-            <List dense={dense}>{generate(props.products)}</List>
+            <List dense={dense}>
+              {generate(props.products, onDeleteItemHandler)}
+            </List>
           </div>
         </Grid>
       </div>
