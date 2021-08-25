@@ -1,35 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid } from "@material-ui/core";
 
 import { ProductCard } from "./ProductCard";
-
-const PRODUCTS_DATA = [
-  {
-    id: "cdb58e09-1537-416f-9646-55a3d98518a8",
-    image:
-      "https://i.picsum.photos/id/672/640/480.jpg?hmac=Qh6HFl-tBzGwlPPjrHmcNfk7DJCnPEwD7ErC7fFxiM0",
-    name: "Incredible Frozen Salad",
-    price: "164.00",
-    slug: "incredible-frozen-salad",
-  },
-  {
-    id: "1ff7db58-9ab1-4fc5-acd8-8d4f8f76c173",
-    image:
-      "https://i.picsum.photos/id/354/640/480.jpg?hmac=pMKfo0IVIZ_UvabmPadnj1F7PSmS7ZudIVRqsUpGzhk",
-    name: "Incredible Wooden Chicken",
-    price: "226.00",
-    slug: "incredible-wooden-chicken",
-  },
-  {
-    id: "822e9cfa-0a94-49ee-b367-315ef02d72ad",
-    image:
-      "https://i.picsum.photos/id/912/640/480.jpg?hmac=UyA_9gNPvXZFHb1V5HUq_0VhWjiUcc164LInaVyUo4k",
-    name: "Refined Cotton Chips",
-    price: "152.00",
-    slug: "refined-cotton-chips",
-  },
-];
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -56,9 +29,34 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export function ProductsContainer(props) {
+  const [products, setProducts] = useState({
+    data: props.products,
+    basket: [],
+  });
+
+  if (typeof window !== "undefined") {
+    // localStorage code here
+    console.log(window["localStorage"].products);
+    const jsonObject = JSON.stringify(products.basket);
+    window["localStorage"].setItem("products", jsonObject);
+  }
+
+  const addToBasketHandler = function (productId) {
+    const selectedProduct = products.data.filter(
+      (product) => product.id === event.target.dataset.id
+    )[0];
+    console.log(selectedProduct);
+    setProducts((prev) => {
+      return {
+        ...prev,
+        basket: [...prev.basket, selectedProduct],
+      };
+    });
+    console.log(event.target.dataset.id);
+  };
   const classes = useStyles();
 
-  // console.log(props.products);
+  console.log(products);
 
   return (
     <Grid
@@ -71,6 +69,8 @@ export function ProductsContainer(props) {
       {props.products.map((product) => (
         <Grid key={product.id} item>
           <ProductCard
+            addToBasketHandler={addToBasketHandler}
+            productsObject={props.products}
             id={product.id}
             image={product.image}
             price={product.price}

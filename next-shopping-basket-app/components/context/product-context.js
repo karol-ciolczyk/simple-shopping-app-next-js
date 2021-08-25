@@ -1,8 +1,17 @@
-import React from "react";
+// components/common/MenuProvider.js
+import { createContext, useContext } from "react";
 
-const ProductContext = React.createContext({
-  products: [],
-  basket: [],
-});
+// Create Context object.
+const MenuContext = createContext();
 
-export default ProductContext;
+// Export Provider.
+export function MenuProvider(props) {
+  const { value, children } = props;
+
+  return <MenuContext.Provider value={value}>{children}</MenuContext.Provider>;
+}
+
+// Export useContext Hook.
+export function useMenuContext() {
+  return useContext(MenuContext);
+}

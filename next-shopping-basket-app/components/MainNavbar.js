@@ -131,12 +131,16 @@ export function MainNavbar(props) {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="secondary">
-            <ShoppingBasketIcon />
-          </Badge>
-        </IconButton>
-        <p>Basket</p>
+        <Link href="/basket" passHref>
+          <IconButton aria-label="show 4 new mails" color="inherit">
+            <Badge badgeContent={4} color="secondary">
+              <ShoppingBasketIcon />
+            </Badge>
+          </IconButton>
+        </Link>
+        <Link href="/basket" passHref>
+          <p>Basket</p>
+        </Link>
       </MenuItem>
     </Menu>
   );
@@ -174,11 +178,13 @@ export function MainNavbar(props) {
             </div>
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
-              <IconButton aria-label="show 4 new mails" color="inherit">
-                <Badge badgeContent={4} color="secondary">
-                  <ShoppingBasketIcon />
-                </Badge>
-              </IconButton>
+              <Link href="/basket" passHref>
+                <IconButton aria-label="show 4 new mails" color="inherit">
+                  <Badge badgeContent={4} color="secondary">
+                    <ShoppingBasketIcon />
+                  </Badge>
+                </IconButton>
+              </Link>
             </div>
             <div className={classes.sectionMobile}>
               <IconButton

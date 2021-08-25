@@ -1,3 +1,6 @@
+import React, { useState } from "react";
+import { MenuProvider } from "./context/product-context.js";
+
 import {
   Card,
   CardMedia,
@@ -29,13 +32,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const ProductCard = function (props) {
+  // const [products, setProducts] = useState({
+  //   data: props.productsObject,
+  //   basket: [],
+  // });
   const classes = useStyles();
 
   const onClickHandler = function (event) {
-    console.log(event);
+    props.addToBasketHandler(event.target.dataset.id);
   };
 
   return (
+    // <MenuProvider value={products.basket}>
     <Card className={classes.root} elevation={3}>
       <Link href={`/products/${props.id}`} passHref>
         <CardActionArea>
@@ -52,11 +60,12 @@ export const ProductCard = function (props) {
         </CardActionArea>
       </Link>
       <div className={classes.actionCard}>
-        <Typography variant="subtitle2">Price: {props.price}</Typography>
-        <Button size="small" variant="contained" color="primary">
+        <Typography variant="subtitle2">Price: ${props.price}</Typography>
+        <button data-id={props.id} onClick={onClickHandler}>
           add to basket
-        </Button>
+        </button>
       </div>
     </Card>
+    // </MenuProvider>
   );
 };
