@@ -133,7 +133,7 @@ export function MainNavbar(props) {
       <MenuItem>
         <Link href="/basket" passHref>
           <IconButton aria-label="show 4 new mails" color="inherit">
-            <Badge badgeContent={4} color="secondary">
+            <Badge badgeContent={props.itemsNumber} color="secondary">
               <ShoppingBasketIcon />
             </Badge>
           </IconButton>
@@ -180,7 +180,7 @@ export function MainNavbar(props) {
             <div className={classes.sectionDesktop}>
               <Link href="/basket" passHref>
                 <IconButton aria-label="show 4 new mails" color="inherit">
-                  <Badge badgeContent={4} color="secondary">
+                  <Badge badgeContent={props.itemsNumber} color="secondary">
                     <ShoppingBasketIcon />
                   </Badge>
                 </IconButton>

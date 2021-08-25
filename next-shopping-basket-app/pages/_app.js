@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout } from "../components/Layout";
+// import { Layout } from "../components/Layout";
 
 import PropTypes from "prop-types";
 import Head from "next/head";
@@ -30,9 +30,9 @@ export default function MyApp(props) {
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        {/* <Layout> */}
+        <Component {...pageProps} />
+        {/* </Layout> */}
       </ThemeProvider>
     </React.Fragment>
   );

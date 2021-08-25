@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { MainNavbar } from "./MainNavbar";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid } from "@material-ui/core";
 
@@ -7,8 +8,10 @@ import { ProductCard } from "./ProductCard";
 const useStyles = makeStyles((theme) => ({
   container: {
     margin: "auto",
-    marginTop: "50px",
-    width: "80%",
+    width: "100%",
+  },
+  navbar: {
+    marginBottom: "50px",
   },
   root: {
     width: 250,
@@ -35,17 +38,23 @@ export function ProductsContainer(props) {
   });
 
   if (typeof window !== "undefined") {
+    console.log("EFFECT", window.localStorage.products);
+
     // localStorage code here
-    console.log(window["localStorage"].products);
+    // console.log(window["localStorage"].products);
     const jsonObject = JSON.stringify(products.basket);
     window["localStorage"].setItem("products", jsonObject);
   }
+
+  // useEffect(() => {
+  //   console.log("EFFECT", window.localStorage);
+  // }, []);
 
   const addToBasketHandler = function (productId) {
     const selectedProduct = products.data.filter(
       (product) => product.id === event.target.dataset.id
     )[0];
-    console.log(selectedProduct);
+    // console.log(selectedProduct);
     setProducts((prev) => {
       return {
         ...prev,
@@ -56,7 +65,7 @@ export function ProductsContainer(props) {
   };
   const classes = useStyles();
 
-  console.log(products);
+  console.log(products.basket);
 
   return (
     <Grid
@@ -65,7 +74,10 @@ export function ProductsContainer(props) {
       spacing={2}
       className={classes.container}
     >
-      <Grid xs={12} item></Grid>
+      <Grid xs={12} item className={classes.navbar}>
+        {" "}
+        <MainNavbar itemsNumber={products.basket.length} />{" "}
+      </Grid>
       {props.products.map((product) => (
         <Grid key={product.id} item>
           <ProductCard

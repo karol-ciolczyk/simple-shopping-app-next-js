@@ -22,7 +22,7 @@ export const MainPage = function () {
             Show Products
           </Button>
         </Link>
-        <Link href="/shoppig-basket" passHref>
+        <Link href="/basket" passHref>
           <Button name="shopping-basket" variant="contained" color="secondary">
             shopping basket
           </Button>
