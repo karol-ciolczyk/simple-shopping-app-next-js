@@ -8,8 +8,24 @@ export const ProductDetailsCard = function (props) {
     <Card className={style.card} elevation={3}>
       <img src={props.src}></img>
       <div className={style.description}>
-        <Typography variant="h4"> {props.name} </Typography>
-        <Typography variant="h5"> {props.description} </Typography>
+        <Typography
+          display="block"
+          className={style.descriptionItem}
+          align="center"
+          variant="h4"
+        >
+          {" "}
+          {props.name}{" "}
+        </Typography>
+        <Typography
+          display="block"
+          className={style.descriptionItem}
+          align="center"
+          variant="subtitle1"
+        >
+          {" "}
+          {props.description}{" "}
+        </Typography>
         <Button variant="contained" color="secondary">
           {" "}
           Add to basket{" "}

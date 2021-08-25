@@ -6,9 +6,13 @@
   width: 40%;
 }
 .description {
+  margin: 20px 20px;
   min-height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+}
+.descriptionItem {
+  padding: 13px;
 }
