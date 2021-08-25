@@ -1,10 +1,10 @@
-import { loadGetInitialProps } from "next/dist/shared/lib/utils";
+import { MainNavbar } from "./MainNavbar";
 
-export const Layout = function () {
+export const Layout = function (props) {
   return (
     <div>
-      <AppBarNavigation />
-      <main>{loadGetInitialProps.children}</main>
+      <MainNavbar />
+      <main>{props.children}</main>
     </div>
   );
 };
