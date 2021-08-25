@@ -27,25 +27,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const ProductCard = function () {
+export const ProductCard = function (props) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} elevation={3}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image={product.image}
+          image={props.image}
           title="Contemplative Reptile"
         />
         <CardContent>
           <Typography gutterBottom variant="subtitle1" component="h2">
-            {product.name}
+            {props.name}
           </Typography>
         </CardContent>
       </CardActionArea>
       <div className={classes.actionCard}>
-        <Typography variant="subtitle2">Price: {product.price}</Typography>
+        <Typography variant="subtitle2">Price: {props.price}</Typography>
         <Button size="small" variant="contained" color="primary">
           add to basket
         </Button>

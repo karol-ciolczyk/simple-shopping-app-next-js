@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Grid, TextField } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 
 import { ProductCard } from "./ProductCard";
 
@@ -65,20 +65,16 @@ export function ProductsContainer(props) {
       spacing={2}
       className={classes.container}
     >
-      <Grid xs={12} item>
-        <TextField
-          id="outlined-basic"
-          label="Search product"
-          variant="outlined"
-          onChange={inputValueHandler}
-        />
-      </Grid>
-      {products.filtered &&
-        products.filtered.map((product) => (
-          <Grid key={product.id} item>
-            <ProductCard />
-          </Grid>
-        ))}
+      <Grid xs={12} item></Grid>
+      {PRODUCTS_DATA.map((product) => (
+        <Grid key={product.id} item>
+          <ProductCard
+            image={product.image}
+            price={product.price}
+            name={product.name}
+          />
+        </Grid>
+      ))}
     </Grid>
   );
 }
