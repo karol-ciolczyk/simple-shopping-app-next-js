@@ -1,5 +1,7 @@
-import { Button, Card } from "@material-ui/core";
+import { Button, Card, Typography } from "@material-ui/core";
 import Link from "next/link";
+
+import style from "./MainPage.module.css";
 
 export const MainPage = function () {
   const onClickHandler = function (event) {
@@ -7,17 +9,25 @@ export const MainPage = function () {
   };
 
   return (
-    <Card>
-      <Link href="/products" passHref>
-        <Button value="products" variant="contained" onClick={onClickHandler}>
-          Show Products
-        </Button>
-      </Link>
-      <Link href="/shoppig-basket" passHref>
-        <Button name="shopping-basket" variant="contained">
-          Go to shopping basket
-        </Button>
-      </Link>
+    <Card className={style.card} elevation={3}>
+      <Typography variant="h5"> Welcome to our store </Typography>
+      <div className={style.buttons}>
+        <Link href="/products" passHref>
+          <Button
+            value="products"
+            variant="contained"
+            color="secondary"
+            onClick={onClickHandler}
+          >
+            Show Products
+          </Button>
+        </Link>
+        <Link href="/shoppig-basket" passHref>
+          <Button name="shopping-basket" variant="contained" color="secondary">
+            shopping basket
+          </Button>
+        </Link>
+      </div>
     </Card>
   );
 };
