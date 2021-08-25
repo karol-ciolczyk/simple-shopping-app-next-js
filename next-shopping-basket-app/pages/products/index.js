@@ -16,6 +16,7 @@ const GET_PRODUCTS = gql`
 `;
 
 const Products = function (props) {
+  console.log(props);
   return <ProductsContainer products={props.products} />;
 };
 
