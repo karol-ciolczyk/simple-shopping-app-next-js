@@ -174,20 +174,24 @@ export function MainNavbar(props) {
                 Home Page
               </Typography>
             </Link>
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon />
+            {props.searchInput ? (
+              <div className={classes.search}>
+                <div className={classes.searchIcon}>
+                  <SearchIcon />
+                </div>
+                <InputBase
+                  placeholder="Search…"
+                  classes={{
+                    root: classes.inputRoot,
+                    input: classes.inputInput,
+                  }}
+                  inputProps={{ "aria-label": "search" }}
+                  onChange={props.onSearchInputHandler}
+                />
               </div>
-              <InputBase
-                placeholder="Search…"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-                inputProps={{ "aria-label": "search" }}
-                onChange={props.onSearchInputHandler}
-              />
-            </div>
+            ) : (
+              ""
+            )}
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
               <Link href="/products" passHref>

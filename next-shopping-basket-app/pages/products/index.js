@@ -16,7 +16,7 @@ const GET_PRODUCTS = gql`
 `;
 
 const Products = function (props) {
-  return <ProductsContainer products={props.products} />;
+  return <ProductsContainer products={props.products} searchInput={true} />;
 };
 
 export async function getStaticProps() {

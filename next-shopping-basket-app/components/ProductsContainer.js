@@ -108,6 +108,7 @@ export function ProductsContainer(props) {
         <MainNavbar
           itemsNumber={products.basket.length}
           onSearchInputHandler={onSearchInputHandler}
+          searchInput={props.searchInput}
         />{" "}
       </Grid>
       <Grid
