@@ -10,6 +10,11 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
     width: "100%",
   },
+  container_container: {
+    width: "100%",
+    padding: "70px 100px 0px 100px",
+    // margin: "auto",
+  },
   navbar: {
     marginBottom: "50px",
   },
@@ -90,18 +95,26 @@ export function ProductsContainer(props) {
         {" "}
         <MainNavbar itemsNumber={products.basket.length} />{" "}
       </Grid>
-      {props.products.map((product) => (
-        <Grid key={product.id} item>
-          <ProductCard
-            addToBasketHandler={addToBasketHandler}
-            productsObject={props.products}
-            id={product.id}
-            image={product.image}
-            price={product.price}
-            name={product.name}
-          />
-        </Grid>
-      ))}
+      <Grid
+        xs={12}
+        justifyContent="center"
+        container
+        spacing={2}
+        className={classes.container_container}
+      >
+        {props.products.map((product) => (
+          <Grid key={product.id} item>
+            <ProductCard
+              addToBasketHandler={addToBasketHandler}
+              productsObject={props.products}
+              id={product.id}
+              image={product.image}
+              price={product.price}
+              name={product.name}
+            />
+          </Grid>
+        ))}
+      </Grid>
     </Grid>
   );
 }

@@ -3,7 +3,7 @@ import { BasketTable } from "../../components/BasketTable";
 import { MainNavbar } from "../../components/MainNavbar";
 
 const Basket = function () {
-  const [products, setPrducts] = useState([]);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -12,7 +12,7 @@ const Basket = function () {
       const jsonObj = window["localStorage"].products;
       const basketState = JSON.parse(jsonObj);
       console.log(basketState);
-      setPrducts(basketState);
+      setProducts(basketState);
       // window["localStorage"].setItem("products", jsonObject);
     }
   }, []);
@@ -20,7 +20,7 @@ const Basket = function () {
   return (
     <>
       <MainNavbar itemsNumber={products.length} />
-      <BasketTable />;
+      <BasketTable setProducts={setProducts} />;
     </>
   );
 };

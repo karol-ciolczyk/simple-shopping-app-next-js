@@ -68,7 +68,7 @@ const removeProduct = function (id) {
   return readyProducts;
 };
 
-export function BasketTable() {
+export function BasketTable(props) {
   const classes = useStyles();
   const [products, setProducts] = useState([]);
 
@@ -88,6 +88,7 @@ export function BasketTable() {
     const jsonObject = JSON.stringify(itemDeleted);
     window.localStorage.setItem("products", jsonObject);
     setProducts(itemDeleted);
+    props.setProducts(itemDeleted);
   };
 
   console.log(products);
