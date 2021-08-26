@@ -10,11 +10,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-  container: {
-    minWidth: "300px",
-    margin: "50px 50px",
-    padding: "50px",
-  },
   demo: {
     backgroundColor: theme.palette.background.paper,
   },
@@ -94,7 +89,7 @@ export function BasketTable(props) {
   console.log(products);
 
   return (
-    <Card elevation={3} className={classes.container}>
+    <Card elevation={3} className={style.container}>
       <div className={classes.root}>
         <Grid item xs={12}>
           <Typography variant="h6" className={classes.title} align="center">

@@ -1,3 +1,8 @@
+.container {
+  min-width: 300px;
+  margin: 50px 50px;
+  padding: 50px;
+}
 .img {
   width: 70px;
   height: 70px;
@@ -43,5 +48,43 @@
   }
   .content_button {
     width: 70px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .item {
+    flex-direction: column;
+  }
+  .contentItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-basis: auto;
+    margin-bottom: 10px;
+  }
+  .img {
+    width: 100%;
+    height: auto;
+    margin-right: 0px;
+  }
+  .phone {
+    margin: 0px;
+  }
+  .container {
+    min-width: 300px;
+    margin: 0px;
+    padding: 70px;
+  }
+  .content_button {
+    border-radius: 4px;
+    height: 30px;
+    width: 100%;
+  }
+  .content_button--toRight {
+    width: 100%;
+    align-items: flex-end;
+  }
+  .content {
+    padding: 0px 5px;
   }
 }
