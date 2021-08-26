@@ -29,6 +29,17 @@ const useStyles = makeStyles((theme) => ({
     margin: "15px 0px",
     alignItems: "center",
   },
+  button: {
+    backgroundColor: "#556cd6",
+    color: "white",
+    border: "0px",
+    padding: "6px 8px",
+    borderRadius: "3px",
+    cursor: "pointer",
+    "&:hover": {
+      backgroundColor: "#4b5fbf",
+    },
+  },
 }));
 
 export const ProductCard = function (props) {
@@ -61,7 +72,11 @@ export const ProductCard = function (props) {
       </Link>
       <div className={classes.actionCard}>
         <Typography variant="subtitle2">Price: ${props.price}</Typography>
-        <button data-id={props.id} onClick={onClickHandler}>
+        <button
+          data-id={props.id}
+          onClick={onClickHandler}
+          className={classes.button}
+        >
           add to basket
         </button>
       </div>
