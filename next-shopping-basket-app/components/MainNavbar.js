@@ -11,6 +11,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
+import StorefrontIcon from "@material-ui/icons/Storefront";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import MoreIcon from "@material-ui/icons/MoreVert";
 
@@ -179,6 +180,11 @@ export function MainNavbar(props) {
             </div>
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
+              <Link href="/products" passHref>
+                <IconButton aria-label="show 4 new mails" color="inherit">
+                  <StorefrontIcon />
+                </IconButton>
+              </Link>
               <Link href="/basket" passHref>
                 <IconButton aria-label="show 4 new mails" color="inherit">
                   <Badge badgeContent={props.itemsNumber} color="secondary">
