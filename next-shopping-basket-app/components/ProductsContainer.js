@@ -40,7 +40,9 @@ export function ProductsContainer(props) {
   const [products, setProducts] = useState({
     data: props.products,
     basket: [],
+    filtered: props.products,
   });
+  const classes = useStyles();
 
   useEffect(() => {
     if (products.basket.length < 1) return;
@@ -57,7 +59,6 @@ export function ProductsContainer(props) {
       const jsonObj = window["localStorage"].products;
       if (!jsonObj) return;
       const products = JSON.parse(jsonObj);
-      console.log(products);
       setProducts((prev) => {
         return {
           ...prev,
@@ -81,9 +82,19 @@ export function ProductsContainer(props) {
     });
     console.log(productId);
   };
-  const classes = useStyles();
 
-  console.log(products.basket);
+  const onSearchInputHandler = function (event) {
+    const serchedValue = event.target.value.replace(/ /g, "");
+    const filtered = products.data.filter((product) =>
+      product.name.toLowerCase().replace(/ /g, "").includes(serchedValue)
+    );
+    setProducts((prev) => {
+      return {
+        ...prev,
+        filtered,
+      };
+    });
+  };
 
   return (
     <Grid
@@ -94,7 +105,10 @@ export function ProductsContainer(props) {
     >
       <Grid xs={12} item className={classes.navbar}>
         {" "}
-        <MainNavbar itemsNumber={products.basket.length} />{" "}
+        <MainNavbar
+          itemsNumber={products.basket.length}
+          onSearchInputHandler={onSearchInputHandler}
+        />{" "}
       </Grid>
       <Grid
         justifyContent="center"
@@ -102,7 +116,7 @@ export function ProductsContainer(props) {
         spacing={2}
         className={classes.container_container}
       >
-        {props.products.map((product) => (
+        {products.filtered.map((product) => (
           <Grid key={product.id} item>
             <ProductCard
               addToBasketHandler={addToBasketHandler}

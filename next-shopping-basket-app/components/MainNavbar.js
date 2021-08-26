@@ -174,6 +174,7 @@ export function MainNavbar(props) {
                   input: classes.inputInput,
                 }}
                 inputProps={{ "aria-label": "search" }}
+                onChange={props.onSearchInputHandler}
               />
             </div>
             <div className={classes.grow} />
