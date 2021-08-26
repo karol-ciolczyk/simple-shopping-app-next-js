@@ -1,16 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
-import ListItemText from "@material-ui/core/ListItemText";
-import Avatar from "@material-ui/core/Avatar";
-import IconButton from "@material-ui/core/IconButton";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import FolderIcon from "@material-ui/icons/Folder";
-import DeleteIcon from "@material-ui/icons/Delete";
 import { Card } from "@material-ui/core";
 
 import style from "./BasketTable.module.css";
@@ -36,10 +27,10 @@ const useStyles = makeStyles((theme) => ({
 function generate(products, onDeleteItemHandler) {
   return products?.map((product, index) => {
     return (
-      <div key={product.id}>
+      <div key={Math.random()}>
         <Card elevation={5} className={style.item}>
           <div className={style.contentItem}>
-            <img src={product.image} width="100" height="100" alt="image" />
+            <img className={style.img} src={product.image} alt="image" />
             <div className={style.content}>
               <Typography variant="subtitle1">{product.name}</Typography>
             </div>
@@ -50,14 +41,17 @@ function generate(products, onDeleteItemHandler) {
                 $ {product.price}
               </Typography>
             </div>
-            <button
-              data-id={product.id}
-              className={style.content_button}
-              onClick={onDeleteItemHandler}
+            <div
+              className={`${style.content} ${style["content_button--toRight"]}`}
             >
-              {" "}
-              Delete{" "}
-            </button>
+              <button
+                data-id={product.id}
+                className={style.content_button}
+                onClick={onDeleteItemHandler}
+              >
+                Delete
+              </button>
+            </div>
           </div>
         </Card>
       </div>
@@ -65,15 +59,38 @@ function generate(products, onDeleteItemHandler) {
   });
 }
 
-export function BasketTable(props) {
+const removeProduct = function (id) {
+  const products = JSON.parse(window.localStorage.products);
+  const findedItems = products.filter((item) => item.id === id);
+  findedItems.shift();
+  const restItems = products.filter((item) => item.id !== id);
+  const readyProducts = [...findedItems, ...restItems];
+  return readyProducts;
+};
+
+export function BasketTable() {
   const classes = useStyles();
-  const [dense, setDense] = React.useState(false);
-  console.log(props);
-  // const [secondary, setSecondary] = React.useState(false);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const jsonObj = window["localStorage"].products;
+      const basketState = JSON.parse(jsonObj);
+      setProducts(basketState);
+    }
+  }, []);
 
   const onDeleteItemHandler = function (event) {
-    console.log(event.target.dataset.id);
+    const id = event.target.dataset.id;
+
+    const itemDeleted = removeProduct(id);
+    console.log(itemDeleted);
+    const jsonObject = JSON.stringify(itemDeleted);
+    window.localStorage.setItem("products", jsonObject);
+    setProducts(itemDeleted);
   };
+
+  console.log(products);
 
   return (
     <Card elevation={3} className={classes.container}>
@@ -83,37 +100,10 @@ export function BasketTable(props) {
             Shopping basket
           </Typography>
           <div className={classes.demo}>
-            <List dense={dense}>
-              {generate(props.products, onDeleteItemHandler)}
-            </List>
+            {generate(products, onDeleteItemHandler)}
           </div>
         </Grid>
       </div>
     </Card>
   );
-}
-
-{
-  /* <ListItem key={product.id}>
-  <img
-    src={
-      "https://i.picsum.photos/id/354/640/480.jpg?hmac=pMKfo0IVIZ_UvabmPadnj1F7PSmS7ZudIVRqsUpGzhk"
-    }
-    width="100"
-    height="100"
-  />
-  <ListItemText
-    primary={product.name}
-    // secondary={secondary ? "Secondary text" : null}
-  />
-  <ListItemText
-    primary={`$ ${product.price}`}
-    // secondary={secondary ? "Secondary text" : null}
-  />
-  <ListItemSecondaryAction>
-    <IconButton edge="end" aria-label="delete">
-      <DeleteIcon />
-    </IconButton>
-  </ListItemSecondaryAction>
-</ListItem>; */
 }

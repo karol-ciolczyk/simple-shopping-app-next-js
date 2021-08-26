@@ -40,10 +40,6 @@ export function ProductsContainer(props) {
   useEffect(() => {
     if (products.basket.length < 1) return;
     if (typeof window !== "undefined") {
-      console.log("EFFECT", window.localStorage.products);
-
-      // localStorage code here
-      // console.log(window["localStorage"].products);
       const jsonObject = JSON.stringify(products.basket);
       window["localStorage"].setItem("products", jsonObject);
     }
@@ -68,7 +64,7 @@ export function ProductsContainer(props) {
 
   const addToBasketHandler = function (productId) {
     const selectedProduct = products.data.filter(
-      (product) => product.id === event.target.dataset.id
+      (product) => product.id === productId
     )[0];
     // console.log(selectedProduct);
     setProducts((prev) => {
@@ -77,7 +73,7 @@ export function ProductsContainer(props) {
         basket: [...prev.basket, selectedProduct],
       };
     });
-    console.log(event.target.dataset.id);
+    console.log(productId);
   };
   const classes = useStyles();
 

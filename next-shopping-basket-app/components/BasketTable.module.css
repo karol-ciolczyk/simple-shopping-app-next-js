@@ -1,22 +1,27 @@
+.img {
+  width: 70px;
+  height: 70px;
+  margin-right: 50px;
+}
 .item {
   display: flex;
   justify-content: space-between;
-  padding: 0px 20px 0px 0px;
   margin: 20px 0px;
-  /* align-content: stretch; */
 }
 .contentItem {
   display: flex;
   flex-basis: 100%;
 }
 .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   flex-basis: 100%;
-  margin: 0px 20px;
-  padding: 30px;
+  margin-left: 10px;
 }
 .content_button {
-  padding: 10px 20px;
-  margin: 23px;
+  width: 100px;
+  height: 50%;
   cursor: pointer;
   border-radius: 7px;
   border: 1px solid grey;
@@ -26,4 +31,17 @@
 }
 .content_button:hover {
   background-color: #d6004b;
+}
+.content_button--toRight {
+  margin-right: 10px;
+  align-items: flex-end;
+}
+
+@media screen and (max-width: 750px) {
+  .img {
+    margin-right: 0px;
+  }
+  .content_button {
+    width: 70px;
+  }
 }

@@ -3,7 +3,7 @@ import { BasketTable } from "../../components/BasketTable";
 import { MainNavbar } from "../../components/MainNavbar";
 
 const Basket = function () {
-  const [prducts, setPrducts] = useState([]);
+  const [products, setPrducts] = useState([]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -19,8 +19,8 @@ const Basket = function () {
 
   return (
     <>
-      <MainNavbar itemsNumber={prducts.length} />
-      <BasketTable products={prducts} />;
+      <MainNavbar itemsNumber={products.length} />
+      <BasketTable />;
     </>
   );
 };
