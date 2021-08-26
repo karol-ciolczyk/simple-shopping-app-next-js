@@ -143,6 +143,16 @@ export function MainNavbar(props) {
           <p>Basket</p>
         </Link>
       </MenuItem>
+      <MenuItem>
+        <Link href="/products" passHref>
+          <IconButton aria-label="show 4 new mails" color="inherit">
+            <StorefrontIcon />
+          </IconButton>
+        </Link>
+        <Link href="/products" passHref>
+          <p>Products</p>
+        </Link>
+      </MenuItem>
     </Menu>
   );
 
