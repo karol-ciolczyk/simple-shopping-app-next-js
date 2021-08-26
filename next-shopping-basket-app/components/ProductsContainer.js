@@ -55,6 +55,7 @@ export function ProductsContainer(props) {
       // localStorage code here
       // console.log(window["localStorage"].products);
       const jsonObj = window["localStorage"].products;
+      if (!jsonObj) return;
       const products = JSON.parse(jsonObj);
       console.log(products);
       setProducts((prev) => {
@@ -96,7 +97,6 @@ export function ProductsContainer(props) {
         <MainNavbar itemsNumber={products.basket.length} />{" "}
       </Grid>
       <Grid
-        xs={12}
         justifyContent="center"
         container
         spacing={2}
